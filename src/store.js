@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import detailSlice from "./detailSlice";
+import cohortReducer from './redux/cohortCreation/Slice'
+import imageReducer from './redux/cohortCreation/imageSlice'
 
 const store = configureStore({
     reducer:{
-        data: detailSlice,
+        cohort: cohortReducer,
+        image: imageReducer
     }
 })
 

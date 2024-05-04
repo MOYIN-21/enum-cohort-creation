@@ -15,7 +15,7 @@ const Cohorts = () => {
         <div>
             {/* <p>COHORT</p> */}
             <div>
-                <input type="search" name="searchCohort" id="cohortId" placeholder='Enter cohort' />
+                {/* <input type="search" name="searchCohort" id="cohortId" placeholder='Enter cohort' /> */}
             </div>
         </div>
             <LargeScreenSideBar/>

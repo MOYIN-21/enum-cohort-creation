@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Stack from '@mui/joy/Stack';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
@@ -14,19 +14,32 @@ import Select from '@mui/material/Select';
 import { MenuItem } from '@mui/material'
 import EndDate from './EndDate';
 import LargeScreenDragAndDrop from './LargeScreenDragAndDrop';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCohortName } from '../../redux/cohortCreation/Slice';
+import { setSelectedOption } from '../../redux/cohortCreation/Slice';
+import { setDescription } from '../../redux/cohortCreation/Slice';
 
 
 const LargeScreenButtonPopOver=()=>{
-  const [age, setAge] = React.useState('');
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
-  // const [open, setOpen] = React.useState(false)
+  const dispatch = useDispatch();
+  const [selectedOption, setSelected] = useState('');  
+  const cohortInput = useSelector((state)=>state.cohort.cohortName);
+  console.log(cohortInput)
+  const description = useSelector((state)=> state.cohort.description);
+  console.log(description)
+  const [layout, setLayout] = useState('');
 
-  const [layout, setLayout] = React.useState(undefined);
+  const handelCancelButton =()=>{
+    console.log("button")
+    setLayout(false)
+  }
+
+  const handleSelectChange=(e)=> {
+    setSelected(e.target.value);
+    dispatch(setSelectedOption(e.target.value));
+  }
+  const isButtonDisabled = !setCohortName || !setDescription || !setSelectedOption;
+
   return (
     <div className='hidden sm:flex justify-center pt-10'>
       <React.Fragment>
@@ -50,18 +63,27 @@ const LargeScreenButtonPopOver=()=>{
         <Modal open={!!layout} onClose={() => setLayout(undefined)}>
           <ModalDialog layout={layout}>
             <ModalClose/>
-            <DialogTitle className="text-4xl font-serif" >Create a Cohort</DialogTitle>
+            <DialogTitle 
+              className="text-4xl font-serif" >Create a Cohort</DialogTitle>
             <DialogContent>
 
               <FormControl>
 
               <FormLabel className="pt-10">Cohort Name</FormLabel>
-                <Textarea placeholder="Enter cohort Name" minRows={2} />
+                <Textarea 
+                  placeholder="Enter cohort Name" 
+                  minRows={2}
+                  onChange={(e) => dispatch(setCohortName(e.target.cohort.cohortName))}
+                  />
               </FormControl>
 
               <FormControl className="pt-10">
                 <FormLabel>Description</FormLabel>
-                <Textarea placeholder="Ex. A space for python developers" minRows={2} />
+                <Textarea 
+                  placeholder="Ex. A space for python developers" 
+                  minRows={2} 
+                  onChange={(e)=> dispatch(setDescription(e.target.cohort.description))}
+                  />
               </FormControl>
 
               <FormControl className="pt-10">
@@ -69,10 +91,8 @@ const LargeScreenButtonPopOver=()=>{
                   <InputLabel id="demo-simple-select-label"></InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={age}
-                      label="Program"
-                      onChange={handleChange}
+                      value={selectedOption}
+                      onChange={handleSelectChange}
                     >
                       <MenuItem value={"product"}>Product Design</MenuItem>
                       <MenuItem value={"backend"}>Backend</MenuItem>
@@ -103,9 +123,7 @@ const LargeScreenButtonPopOver=()=>{
                         width: 'full'   ,
                         color:  '#008EEF'   
                       }}
-                      onClick={()=> {
-                        setLayout('center')
-                      }}                    
+                        onClick={handelCancelButton}
                     >
                       Cancel
                     </Button>
@@ -115,15 +133,14 @@ const LargeScreenButtonPopOver=()=>{
                   <div className='pt-10'>
                     <Button 
                       variant="contained"
+                      disabled={isButtonDisabled} 
                       sx={{
-                        backgroundColor: "#008EEF",
+                        // backgroundColor: "#008EEF",
+                        backgroundColor: isButtonDisabled ? "#008EEF" : "#BDBDBD", 
                         color: "#FFFFFF",
                         lineHeight: '27px', 
-                        width: 'full'   ,
+                        width: 'full',
                       }} 
-                      onClick={()=> {
-                        setLayout('center')
-                      }}
                     >
                       Create Class
                     </Button>

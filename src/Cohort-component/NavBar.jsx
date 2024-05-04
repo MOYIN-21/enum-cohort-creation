@@ -117,8 +117,8 @@ const Nav = () => {
               alt='background' 
               className='flex h-full mt-2 w-full'/>
             </div>
-              <div className='absolute top-6 flex flex-col 
-              gap-2 px-5 p-4 md:px-20'>
+              <div className='absolute md:top-10 top-12 flex flex-col
+              gap-2 p-4 md:px-20'>
 
                 <div className='flex flex-row gap-3 items-center'>
                 <button className='text-white items-center 

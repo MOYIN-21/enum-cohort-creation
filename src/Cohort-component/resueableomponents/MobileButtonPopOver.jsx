@@ -26,7 +26,7 @@ const MobilePopOver=()=>{
     const handleChange = (event) => {
         setAge(event.target.value);
       };
-  const [layout, setLayout] = React.useState(undefined);
+  const [layout, setLayout] = useState('');
   return (
     
     <div className='md:hidden flex justify-center pt-10'>
@@ -206,7 +206,6 @@ const MobilePopOver=()=>{
                         <Select
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
-                          // className='justify-start'
                           value={age}
                           label="Program"
                           onChange={handleChange}

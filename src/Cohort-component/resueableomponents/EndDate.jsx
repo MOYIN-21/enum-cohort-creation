@@ -6,17 +6,17 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const EndDate=()=> {
-  const [value, setValue] = React.useState(dayjs('2022-04-17'));
+  const [endDate, setEndDate] = React.useState(dayjs('2022-04-17'));
 
   return (
     <div className='pt-10'>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={['DatePicker', 'DatePicker']}>
-          <DatePicker label="Start Date" defaultValue={dayjs('2022-04-17')} />
+          <DatePicker label="end Date" defaultValue={dayjs('2022-04-17')} />
           <DatePicker
             label="End Date"
-            value={value}
-            onChange={(newValue) => setValue(newValue)}
+            value={endDate}
+            onChange={(newValue) => setEndDate(newValue)}
           />
         </DemoContainer>
       </LocalizationProvider>

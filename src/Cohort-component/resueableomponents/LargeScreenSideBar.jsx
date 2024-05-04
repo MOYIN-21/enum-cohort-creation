@@ -6,14 +6,10 @@ import { FiBriefcase } from "react-icons/fi";
 import PersonIcon from '@mui/icons-material/Person';
 import { Link } from "react-router-dom";
 
-
 const LargeScreenSideBar = () => {
-  const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const [layout, setLayout] = React.useState(undefined);
+  // const [open, setOpen] = React.useState(false);
   const [activeButton, setActiveButton] = useState(""); 
-  const [age, setAge] = React.useState('');
+  // const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
       setAge(event.target.value);

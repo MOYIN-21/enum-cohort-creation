@@ -1,7 +1,21 @@
 import React from 'react';
 import SvgIcon from '@mui/joy/SvgIcon';
+import { useDispatch } from 'react-redux';
 
 const LargeScreenDragAndDrop=()=> {
+  const dispatch = useDispatch();
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        dispatch(setImageUrl(reader.result));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
     return (
       <div className="flex items-center justify-center w-full ">
         <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h- border-2 border-blue-400 border-dashed rounded-lg cursor-pointer bg-blue-50 ">
@@ -27,7 +41,7 @@ const LargeScreenDragAndDrop=()=> {
               <p className="mb-2 text-lg"><span>Drag and drop or</span> <span className='text-blue-400'> choose file </span></p>
               <p className="text-xs text-gray-500 dark:text-gray-400">240x240 px Recommended, max size 1MB</p>
           </div>
-            <input id="dropzone-file" type="file" className="hidden" />
+            <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} />
         </label>
       </div>
     );
