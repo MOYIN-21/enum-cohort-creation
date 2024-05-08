@@ -4,6 +4,7 @@ import { Button, Typography } from '@mui/material'
 import Modal from '@mui/material/Modal';
 import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort';
 import LargeScreenSideBar from '../resueableomponents/LargeScreenSideBar';
+import LargeScreenButtonPopOver from '../resueableomponents/LargeScreenButtonPopOver';
 
 const Cohorts = () => {
     const [open, setOpen] = React.useState(false);
@@ -20,6 +21,7 @@ const Cohorts = () => {
         </div>
             <LargeScreenSideBar/>
            <LargeScreenNoCohort/>
+           <LargeScreenButtonPopOver/>
     </div>
   )
 }

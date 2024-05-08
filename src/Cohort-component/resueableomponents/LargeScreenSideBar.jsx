@@ -33,7 +33,7 @@ const LargeScreenSideBar = () => {
                   fontSize: 16,
                   lineHeight: '27px' 
                 }}
-                onClick={() => handleClick("cohorts")}  
+                // onClick={() => handleClick("cohorts")}  
                 startIcon={<GroupIcon/>}
               >
                 Cohorts

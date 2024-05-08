@@ -5,12 +5,11 @@ import LargeScreenButtonPopOver from '../resueableomponents/LargeScreenButtonPop
 import MobilePopOver from '../resueableomponents/MobileButtonPopOver';
 import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort';
 
-
 const organizations = () => {
-  const [activeButton, setActiveButton] = useState(""); 
-  const handleClick = (value) => {
-    setActiveButton(value);
-  };
+  // const [activeButton, setActiveButton] = useState(""); 
+  // const handleClick = (value) => {
+  //   setActiveButton(value);
+  // };
 
   return (
   <div>

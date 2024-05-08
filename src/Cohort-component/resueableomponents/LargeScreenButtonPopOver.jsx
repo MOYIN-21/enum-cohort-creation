@@ -9,36 +9,40 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import Button from '@mui/joy/Button';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
-import { MenuItem } from '@mui/material'
 import EndDate from './EndDate';
 import LargeScreenDragAndDrop from './LargeScreenDragAndDrop';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCohortName } from '../../redux/cohortCreation/Slice';
-import { setSelectedOption } from '../../redux/cohortCreation/Slice';
-import { setDescription } from '../../redux/cohortCreation/Slice';
-
+import { useDispatch } from 'react-redux';
+import Programs from './Programs';
+import { setCohortDescription, setCohortName } from '../../redox/createCohortData/Input';
 
 const LargeScreenButtonPopOver=()=>{
   const dispatch = useDispatch();
-  const [selectedOption, setSelected] = useState('');  
-  const cohortInput = useSelector((state)=>state.cohort.cohortName);
-  console.log(cohortInput)
-  const description = useSelector((state)=> state.cohort.description);
-  console.log(description)
   const [layout, setLayout] = useState('');
+  const [formData, setFormData] = useState({
+    cohortName: "",
+    description: "",
+  })
+  const handleSubmit=(event)=>{
+      event.preventDefault();
+  }
+  console.log(formData);
+
+  dispatch(setCohortName(formData.cohortName));
+  dispatch(setCohortDescription(formData.description))
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+ 
 
   const handelCancelButton =()=>{
     console.log("button")
     setLayout(false)
   }
 
-  const handleSelectChange=(e)=> {
-    setSelected(e.target.value);
-    dispatch(setSelectedOption(e.target.value));
-  }
-  const isButtonDisabled = !setCohortName || !setDescription || !setSelectedOption;
+
+  // const isButtonDisabled = !setCohortName || !setCohortDescription || !setSelectedOption;
 
   return (
     <div className='hidden sm:flex justify-center pt-10'>
@@ -64,8 +68,8 @@ const LargeScreenButtonPopOver=()=>{
           <ModalDialog layout={layout}>
             <ModalClose/>
             <DialogTitle 
-              className="text-4xl font-serif" >Create a Cohort</DialogTitle>
-            <DialogContent>
+              className="text-4xl font-serif">Create a Cohort</DialogTitle>
+            <DialogContent onSubmit={handleSubmit}>
 
               <FormControl>
 
@@ -73,7 +77,9 @@ const LargeScreenButtonPopOver=()=>{
                 <Textarea 
                   placeholder="Enter cohort Name" 
                   minRows={2}
-                  onChange={(e) => dispatch(setCohortName(e.target.cohort.cohortName))}
+                  name='cohortName'
+                  value={formData.cohortName}
+                  onChange={handleChange}
                   />
               </FormControl>
 
@@ -82,25 +88,15 @@ const LargeScreenButtonPopOver=()=>{
                 <Textarea 
                   placeholder="Ex. A space for python developers" 
                   minRows={2} 
-                  onChange={(e)=> dispatch(setDescription(e.target.cohort.description))}
+                  name='description'
+                  value={formData.description}
+                  onChange={handleChange}
+                  
                   />
               </FormControl>
 
-              <FormControl className="pt-10">
-                <p className='flex justify-start'>Program</p>
-                  <InputLabel id="demo-simple-select-label"></InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      value={selectedOption}
-                      onChange={handleSelectChange}
-                    >
-                      <MenuItem value={"product"}>Product Design</MenuItem>
-                      <MenuItem value={"backend"}>Backend</MenuItem>
-                      <MenuItem value={"frontend"}>Frontend</MenuItem>
-                      <MenuItem value={"management"}>Product Management</MenuItem>
-                      <MenuItem value={"devops"}>DevOps</MenuItem>
-                      <MenuItem value={"dataScience"}>Data Science</MenuItem>
-                    </Select>
+              <FormControl>
+               <Programs func={(pro)=>{setProgram(pro)}}/>
               </FormControl>
 
               <FormControl>
@@ -129,18 +125,19 @@ const LargeScreenButtonPopOver=()=>{
                     </Button>
                   </div>
 
-
                   <div className='pt-10'>
                     <Button 
                       variant="contained"
-                      disabled={isButtonDisabled} 
+                      // disabled={isButtonDisabled} 
                       sx={{
-                        // backgroundColor: "#008EEF",
-                        backgroundColor: isButtonDisabled ? "#008EEF" : "#BDBDBD", 
+                        backgroundColor: "#008EEF",
+                        // backgroundColor: isButtonDisabled ? "#008EEF" : "#BDBDBD", 
                         color: "#FFFFFF",
                         lineHeight: '27px', 
                         width: 'full',
                       }} 
+                      type={'submit'}
+                      onClick={handleSubmit}
                     >
                       Create Class
                     </Button>

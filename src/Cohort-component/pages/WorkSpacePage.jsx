@@ -3,7 +3,7 @@ import React from 'react'
 const WorkSpacePage = () => {
   return (
     <div>
-      WorkSpace
+      I AM WorkSpace
     </div>
   )
 }

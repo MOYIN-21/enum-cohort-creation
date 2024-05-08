@@ -5,6 +5,7 @@ const Schedule = () => {
   return (
     <div>
          <LargeScreenNoCohort/>
+         I AM SCHEDULE
     </div>
    
   )

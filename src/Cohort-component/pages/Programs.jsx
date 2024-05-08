@@ -7,6 +7,7 @@ const Programs = () => {
     <div>
         <LargeScreenSideBar/>
         <LargeScreenNoCohort/>
+        I AM PROGRAM
     </div>
   )
 }

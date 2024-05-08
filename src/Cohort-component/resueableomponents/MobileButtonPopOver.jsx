@@ -27,6 +27,10 @@ const MobilePopOver=()=>{
         setAge(event.target.value);
       };
   const [layout, setLayout] = useState('');
+  const handelCancelButton =()=>{
+    console.log("button")
+    setLayout(false)
+  }
   return (
     
     <div className='md:hidden flex justify-center pt-10'>
@@ -38,7 +42,6 @@ const MobilePopOver=()=>{
               sx={{
                 backgroundColor: "#008EEF",
                 color: "#FFFFFF",
-                // fontSize: 16,
                 lineHeight: '27px'            
               }}
               onClick={()=> {
@@ -51,8 +54,6 @@ const MobilePopOver=()=>{
         </Stack>
         <Modal open={!!layout} onClose={() => setLayout(undefined)}>
           <ModalDialog layout={layout}>
-            {/* <ModalClose /> */}
-            {/* <DialogTitle>Modal Dialog</DialogTitle> */}
             <DialogContent>
             <p className='justify-start flex'>Switch between tabs</p>
           <Box sx={{ display: 300 }}>
@@ -257,6 +258,7 @@ const MobilePopOver=()=>{
                       onClick={()=> {
                         setLayout('center')
                       }}
+                      onClick={handelCancelButton}
                     >
                       Cancel
                     </Button>

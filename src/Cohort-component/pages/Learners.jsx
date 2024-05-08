@@ -7,6 +7,7 @@ const Learners = () => {
     <div>
         <LargeScreenSideBar/>
         <LargeScreenNoCohort/>
+        I AM A LEARNER
     </div>
   )
 }
