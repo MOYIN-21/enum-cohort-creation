@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import LargeScreenSideBar from '../resueableomponents/LargeScreenSideBar';
 import Mobileoption from '../resueableomponents/Mobileoption';
 import LargeScreenButtonPopOver from '../resueableomponents/LargeScreenButtonPopOver';
@@ -6,11 +6,6 @@ import MobilePopOver from '../resueableomponents/MobileButtonPopOver';
 import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort';
 
 const organizations = () => {
-  // const [activeButton, setActiveButton] = useState(""); 
-  // const handleClick = (value) => {
-  //   setActiveButton(value);
-  // };
-
   return (
   <div>
     <div className=''>

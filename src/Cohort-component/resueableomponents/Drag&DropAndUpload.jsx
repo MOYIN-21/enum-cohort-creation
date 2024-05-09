@@ -1,27 +1,24 @@
-// import React, { useState } from 'react'
+// import React, { useState, useRef } from 'react'
 
 // const DragDropAndUpload = () => {
 //   const [files, setFiles] = useState(null);
 //   const inputRef = useRef();
-//   const handleDragOver = (event) =>{
-//     event.preventDefault();
-//   }
+//   console.log(files)
 
-//   const handleDrop =(event)=>{
+//   const handleDragOver = (event) =>{
 //     event.preventDefault();
 //     console.log(Array.from(event.dataTransfer.files))
 //     setFiles(event.dataTransfer.files)
 //   }
 
-//   const handleUpload = ()=>{};
-
 //   if (files) return (
-//     <div className='upload'>
+//     <div>
 //       <ul>
 //         {Array.from(files).map((file, idx) => 
-//         <li key={idx}>(file.name)
+//         <li key={idx}>{file.name}
 //         </li>)}
 //       </ul>
+      
 //       <div className=''>
 //         <button 
 //           onClick={()=> 
@@ -31,7 +28,7 @@
 //         </button>
 
 //         <button 
-//           onClick={handleUpload}>
+//           >
 //             Upload
 //         </button>
 //       </div>
@@ -42,15 +39,14 @@
 //     <>
 //     {!files &&(
 //     <div 
-//       className='flex flex-col center items-center h-96 border-2 border-blue-400 border-dashed rounded-lg cursor-pointer bg-blue-50 dropZone' 
 //       onDrag={handleDragOver}
-//       onDrop={handleDrop}
+//       // onDrop={handleDrop}
 //       >
 //       <h1>Drag and Drop files to Upload</h1>
 //       <h1>Or</h1>
 //       <input className='' 
 //         type='file' 
-//         // multiple
+//         multiple
 //         onChange={(event) => 
 //         setFiles(event.target.files)}
 //         hidden

@@ -10,10 +10,10 @@ import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import Button from '@mui/joy/Button';
 import EndDate from './EndDate';
-import LargeScreenDragAndDrop from './LargeScreenDragAndDrop';
 import { useDispatch } from 'react-redux';
 import Programs from './Programs';
 import { setCohortDescription, setCohortName } from '../../redox/createCohortData/Input';
+import DragAndUploadFile from './DragAndUploadFile';
 
 const LargeScreenButtonPopOver=()=>{
   const dispatch = useDispatch();
@@ -96,16 +96,19 @@ const LargeScreenButtonPopOver=()=>{
               </FormControl>
 
               <FormControl>
-               <Programs func={(pro)=>{setProgram(pro)}}/>
+               <Programs func={(pro)=>{Programs(pro)}}/>
               </FormControl>
 
-              <FormControl>
-                <EndDate/>
-              </FormControl>
+              <div  className="flex flex-row">
+                <FormControl>
+                  <EndDate/>
+                  <EndDate/>
+                </FormControl>
+              </div>
 
               <FormControl className="pt-10">
                 <p>Add a cohort Avater</p>
-                <LargeScreenDragAndDrop/>
+                <DragAndUploadFile/>
                 <p className='flex justify-start'>you can do this later</p>
               </FormControl>
 

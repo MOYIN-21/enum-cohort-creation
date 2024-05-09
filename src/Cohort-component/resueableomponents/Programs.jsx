@@ -19,8 +19,8 @@ const Programs = () => {
 
   return (
     <FormControl className="pt-10">
-      <p className="flex justify-start">Program</p>
-      <InputLabel id="demo-simple-select-label">Select Program</InputLabel>
+      {/* <p>Program</p> */}
+      <InputLabel  className="flex justify-start" id="demo-simple-select-label">Select Program</InputLabel>
       <Select
         labelId="demo-simple-select-label"
         value={selectedProgram}
