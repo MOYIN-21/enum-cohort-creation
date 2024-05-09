@@ -22,6 +22,7 @@ const LargeScreenButtonPopOver=()=>{
     cohortName: "",
     description: "",
   })
+
   const handleSubmit=(event)=>{
       event.preventDefault();
   }
@@ -34,7 +35,6 @@ const LargeScreenButtonPopOver=()=>{
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
- 
 
   const handelCancelButton =()=>{
     console.log("button")
@@ -100,7 +100,7 @@ const LargeScreenButtonPopOver=()=>{
               </FormControl>
 
               <div  className="flex flex-row">
-                <FormControl>
+                <FormControl className="">
                   <EndDate/>
                   <EndDate/>
                 </FormControl>
