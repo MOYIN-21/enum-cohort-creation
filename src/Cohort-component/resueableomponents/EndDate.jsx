@@ -18,31 +18,30 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
   },
-  textField: {
-    fontSize:"20px", 
-  },
+  // textField: {
+  //   fontSize:"20px", 
+  // },
 }));
 
 const EndDate=()=> {
-  const classes = useStyles();
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const [selectedEndDate, setSelectedEndDate] = useState(dayjs('2022-04-17'));
   const [selectedStartDate, setSelectedStartDate] = useState(dayjs('2022-04-17'));
 
-  const handleEndDateChange = (newDate) => {
-    setSelectedEndDate(newDate);
-    dispatch(setEndDate(newDate.format('YYYY-MM-DD')))
+  const handleEndDateChange = (event) => {
+    setSelectedEndDate(event.target.value);
+    dispatch(setEndDate(event.target.value.format('YYYY-MM-DD')))
     console.log(selectedEndDate)
   };
 
-  const handleStartDateChange = (newDate) => {
+  const handleStartDateChange = (event) => {
     console.log(newDate);
-    setSelectedStartDate(newDate);
-    dispatch(setStartDate(newDate.format('YYYY-MM-DD')))
-    // console.log(selectedStartDate)
+    setSelectedStartDate(event.target.value);
+    dispatch(setStartDate(event.target.value.format('YYYY-MM-DD')))
+    console.log(selectedStartDate)
   }
-
 
   return (
     <LocalizationProvider 
@@ -65,6 +64,7 @@ const EndDate=()=> {
               )}
               format="DD MMM YYYY" 
             />
+            
           </DemoContainer>
         </div>
         <div className='pl-5'>
