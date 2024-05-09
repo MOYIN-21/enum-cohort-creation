@@ -34,7 +34,7 @@ const DragAndUploadFile = () => {
   };
 
   if (files) return (
-    <div className='flex flex-col h-32 items-center justify-center w-72 bg-blue-50 border-2 border-blue-400 border-dashed rounded-lg'>
+    <div className='flex flex-col h-32 items-center justify-center w-full bg-blue-50 border-2 border-blue-400 border-dashed rounded-lg'>
       <ul>
         {Array.from(files).map((file, idx) => 
         <li key={idx}>{file.name}
@@ -57,7 +57,7 @@ const DragAndUploadFile = () => {
   )
 
   return (
-    <div className='flex flex-col h-32 items-center justify-center w-72 bg-blue-50 border-2 border-blue-400 border-dashed rounded-lg'>
+    <div className='flex flex-col h-32 items-center justify-center w-full bg-blue-50 border-2 border-blue-400 border-dashed rounded-lg'>
         <img src={upload} alt="" />
       <div className='flex gap-1 items-center justify-center'> 
       <div

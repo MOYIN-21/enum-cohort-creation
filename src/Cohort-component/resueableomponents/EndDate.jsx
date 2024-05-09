@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { makeStyles } from '@mui/styles';
-import TextField from '@mui/material/TextField'; 
+import TextField from '@mui/material/TextField';
+import { createTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
+import { useDispatch } from 'react-redux';
+import { setEndDate, setStartDate } from '../../redox/createCohortData/DateSlice';
 
 dayjs.locale('en');
+const theme = createTheme();
 
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
-    paddingBottom: theme.spacing()
   },
   textField: {
     fontSize:"20px", 
@@ -22,17 +25,43 @@ const useStyles = makeStyles((theme) => ({
 
 const EndDate=()=> {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const [selectedEndDate, setSelectedEndDate] = useState(dayjs('2022-04-17'));
+  const [selectedStartDate, setSelectedStartDate] = useState(dayjs('2022-04-17'));
+
+  const handleEndDateChange = (newDate) => {
+    setSelectedEndDate(newDate);
+    dispatch(setEndDate(newDate.format('YYYY-MM-DD')))
+    console.log(selectedEndDate)
+  };
+
+  const handleStartDateChange = (newDate) => {
+    console.log(newDate);
+    setSelectedStartDate(newDate);
+    dispatch(setStartDate(newDate.format('YYYY-MM-DD')))
+    // console.log(selectedStartDate)
+  }
+
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider 
+    dateAdapter={AdapterDayjs}>
       <div className={classes.container}>
         <div>
           <label>Start Date</label>
-          <DemoContainer components={['DatePicker']} sx={{width:"200px",height:"60px",paddingRight:"25px"}}>
+          <DemoContainer 
+          components={['DatePicker']}>
             <DatePicker
               disablePast
               renderInput={(params) => (
-                <TextField {...params} variant="standard" label="Start Date" className={classes.textField} /> // Apply custom style
+                <TextField {...params} 
+                variant="standard" 
+                label="Start Date" 
+                value={selectedStartDate}
+                onChange={handleStartDateChange}
+                className={classes.textField} 
+                />
               )}
               format="DD MMM YYYY" 
             />
@@ -40,11 +69,18 @@ const EndDate=()=> {
         </div>
         <div className='pl-5'>
           <label>End Date</label>
-          <DemoContainer components={['DatePicker']} sx={{width:"200px"}}>
+          <DemoContainer 
+          components={['DatePicker']}>
             <DatePicker
               disablePast
               renderInput={(params) => (
-                <TextField {...params} variant="standard" label="End Date" className={classes.textField} /> // Apply custom style
+                <TextField {...params} 
+                variant="standard" 
+                label="End Date" 
+                value={selectedEndDate}
+                onChange={handleEndDateChange}
+                className={classes.textField} 
+              /> 
               )}
               format="DD MMM YYYY" 
             />
@@ -54,39 +90,4 @@ const EndDate=()=> {
     </LocalizationProvider>
   );
 }
-export default EndDate
-
-
-// import React, { useState } from 'react';
-// import dayjs from 'dayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-// import { useDispatch } from 'react-redux'; 
-// import { setDate } from '../../redox/createCohortData/DateSlice';
-
-// const EndDate = () => {
-//   const [selectedDate, setSelectedDate] = useState(dayjs('2022-04-17')); 
-//   const dispatch = useDispatch();
-
-//   const handleDateChange = (newDate) => {
-//     setSelectedDate(newDate);
-//     dispatch(setDate(newDate.format('YYYY-MM-DD'))); 
-//   };
-//   console.log(selectedDate)
-
-//   return (
-//     <div className="pt-10">
-//       <LocalizationProvider dateAdapter={AdapterDayjs}>
-//         <DatePicker
-//           label="End Date"
-//           value={selectedDate}
-//           onChange={handleDateChange}
-//           renderInput={(params) => <TextField {...params} />} 
-//         />
-//       </LocalizationProvider>
-//     </div>
-//   );
-// };
-
-// export default EndDate;
+export default EndDate;

@@ -99,10 +99,10 @@ const LargeScreenButtonPopOver=()=>{
                <Programs func={(pro)=>{Programs(pro)}}/>
               </FormControl>
 
-              <div  className="flex flex-row">
+              <div  className="flex flex-row pt-10">
                 <FormControl className="">
                   <EndDate/>
-                  <EndDate/>
+                  {/* <EndDate/> */}
                 </FormControl>
               </div>
 
