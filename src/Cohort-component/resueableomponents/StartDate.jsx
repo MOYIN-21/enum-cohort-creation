@@ -1,52 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { makeStyles } from '@material-ui/core';
-import TextField from '@mui/material/TextField'; // Import TextField
+import { makeStyles } from '@mui/styles';
+import TextField from '@mui/material/TextField';
+import { createTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
+import { useDispatch } from 'react-redux';
+import { setStartDate } from '../../redox/createCohortData/DateSlice';
 
 dayjs.locale('en');
+const theme = createTheme();
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    paddingBottom: theme.spacing()
-  },
-  textField: {
-    fontSize:"20px", 
-  },
-}));
+const useStyles = makeStyles((theme) => ({}));
 
-export default function StartDate() {
+const StartDate=({set})=> {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const [selectedStartDate, setSelectedStartDate] = useState(dayjs(''));
+
+  const handleStartDateChange = (newDate) => {
+    console.log(newDate);
+    setSelectedStartDate(newDate);
+    // dispatch(setStartDate(newDate.format('DD-MM-YYYY')))
+  }
+
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider 
+    dateAdapter={AdapterDayjs}>
       <div className={classes.container}>
         <div>
           <label>Start Date</label>
-          <DemoContainer components={['DatePicker']} sx={{width:"200px",height:"60px",paddingRight:"25px"}}>
+          <DemoContainer 
+          components={['DatePicker']}>
             <DatePicker
-              disablePast
+              onChange={handleStartDateChange}
+              value={selectedStartDate}
+              className={classes.textField}
               renderInput={(params) => (
-                <TextField {...params} variant="standard" label="Start Date" className={classes.textField} /> // Apply custom style
+              <TextField {...params} 
+              variant="standard"   
+              />           
               )}
-              format="DD MMM YYYY" 
-            />
-          </DemoContainer>
-        </div>
-        <div className='pl-5'>
-          <label>End Date</label>
-          <DemoContainer components={['DatePicker']} sx={{width:"200px"}}>
-            <DatePicker
-              disablePast
-              renderInput={(params) => (
-                <TextField {...params} variant="standard" label="End Date" className={classes.textField} /> // Apply custom style
-              )}
-              format="DD MMM YYYY" 
+              format="DD MMM YYYY"
             />
           </DemoContainer>
         </div>
@@ -54,3 +54,4 @@ export default function StartDate() {
     </LocalizationProvider>
   );
 }
+export default StartDate;

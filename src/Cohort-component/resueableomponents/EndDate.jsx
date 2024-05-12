@@ -9,77 +9,50 @@ import { createTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import { useDispatch } from 'react-redux';
-import { setEndDate, setStartDate } from '../../redox/createCohortData/DateSlice';
+import { setEndDate } from '../../redox/createCohortData/DateSlice';
 
 dayjs.locale('en');
 const theme = createTheme();
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    display: 'flex',
+    // display: 'flex',
   },
   // textField: {
   //   fontSize:"20px", 
   // },
 }));
 
-const EndDate=()=> {
-  const dispatch = useDispatch();
+const EndDate=({setEndDate})=> {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
-  const [selectedEndDate, setSelectedEndDate] = useState(dayjs('2022-04-17'));
-  const [selectedStartDate, setSelectedStartDate] = useState(dayjs('2022-04-17'));
+  const [selectedEndDate, setSelectedEndDate] = useState(dayjs(''));
 
-  const handleEndDateChange = (event) => {
-    setSelectedEndDate(event.target.value);
-    dispatch(setEndDate(event.target.value.format('YYYY-MM-DD')))
-    console.log(selectedEndDate)
+  const handleEndDateChange = (newDate) => {
+    console.log(newDate)
+    // setEndDate(newDate)
+    setSelectedEndDate(newDate);
+    
+
+    // dispatch(setEndDate(newDate.format('YYYY-MM-DD')))
   };
-
-  const handleStartDateChange = (event) => {
-    console.log(newDate);
-    setSelectedStartDate(event.target.value);
-    dispatch(setStartDate(event.target.value.format('YYYY-MM-DD')))
-    console.log(selectedStartDate)
-  }
 
   return (
     <LocalizationProvider 
     dateAdapter={AdapterDayjs}>
       <div className={classes.container}>
-        <div>
-          <label>Start Date</label>
-          <DemoContainer 
-          components={['DatePicker']}>
-            <DatePicker
-              disablePast
-              renderInput={(params) => (
-                <TextField {...params} 
-                variant="standard" 
-                label="Start Date" 
-                value={selectedStartDate}
-                onChange={handleStartDateChange}
-                className={classes.textField} 
-                />
-              )}
-              format="DD MMM YYYY" 
-            />
-            
-          </DemoContainer>
-        </div>
-        <div className='pl-5'>
+        <div className=''>
           <label>End Date</label>
-          <DemoContainer 
-          components={['DatePicker']}>
-            <DatePicker
-              disablePast
-              renderInput={(params) => (
-                <TextField {...params} 
-                variant="standard" 
-                label="End Date" 
-                value={selectedEndDate}
-                onChange={handleEndDateChange}
-                className={classes.textField} 
+          <DemoContainer
+            components={['DatePicker']}>
+            <DatePicker 
+            value={selectedEndDate}
+            onChange={(event)=>{handleEndDateChange(event)}}
+            className={classes.textField}
+            renderInput={(params) => (
+                <TextField {...params}
+                variant="standard"  
               /> 
               )}
               format="DD MMM YYYY" 

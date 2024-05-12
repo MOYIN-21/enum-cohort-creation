@@ -12,7 +12,7 @@ import Button from '@mui/joy/Button';
   return (
     <div className='justify-center flex'>
         <div className=''>
-            <div className='justify-center flex pt-20'>
+            <div className='justify-center flex '>
                 <img src={noCohort} alt="" />
             </div>
             <div className='font-bold pt-5'>Empty Space</div>

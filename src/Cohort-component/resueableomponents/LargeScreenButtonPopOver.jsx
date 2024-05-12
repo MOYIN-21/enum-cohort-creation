@@ -10,18 +10,36 @@ import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import Button from '@mui/joy/Button';
 import EndDate from './EndDate';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Programs from './Programs';
 import { setCohortDescription, setCohortName } from '../../redox/createCohortData/Input';
 import DragAndUploadFile from './DragAndUploadFile';
+import StartDate from './StartDate';
 
 const LargeScreenButtonPopOver=()=>{
   const dispatch = useDispatch();
   const [layout, setLayout] = useState('');
+  const [endDateTime,setEndDate] = useState('')
   const [formData, setFormData] = useState({
     cohortName: "",
     description: "",
+    programDrop: "",
+    date: "",
+    UploadImage: "",
+    startDate:"",
+    endDate:endDateTime,
   })
+  
+  let program = useSelector((state)=> state.program)
+  formData.programDrop = program
+
+  let date = useSelector((state)=> state.date)
+  formData.date = date
+
+
+  let image = useSelector((state)=>state.image)
+  formData.UploadImage = image
+
 
   const handleSubmit=(event)=>{
       event.preventDefault();
@@ -36,8 +54,9 @@ const LargeScreenButtonPopOver=()=>{
     setFormData({ ...formData, [name]: value });
   };
 
+  console.log(formData)
   const handelCancelButton =()=>{
-    console.log("button")
+    // console.log("button")
     setLayout(false)
   }
 
@@ -64,7 +83,7 @@ const LargeScreenButtonPopOver=()=>{
             </Button>
           </div>          
         </Stack>
-        <Modal open={!!layout} onClose={() => setLayout(undefined)}>
+        <Modal open={!!layout} onClose={() => setLayout(true)}>
           <ModalDialog layout={layout}>
             <ModalClose/>
             <DialogTitle 
@@ -94,21 +113,22 @@ const LargeScreenButtonPopOver=()=>{
                   
                   />
               </FormControl>
-
               <FormControl>
                <Programs func={(pro)=>{Programs(pro)}}/>
               </FormControl>
-
-              <div  className="flex flex-row pt-10">
+             
                 <FormControl className="">
+                <div  className="flex flex-row pt-10 gap-10">
+                  <StartDate/>
                   <EndDate/>
-                  {/* <EndDate/> */}
+                  {/* <EndDate ></EndDate> */}
+                </div>
                 </FormControl>
-              </div>
+              
 
               <FormControl className="pt-10">
                 <p>Add a cohort Avater</p>
-                <DragAndUploadFile/>
+                <DragAndUploadFile func={(pro)=> {DragAndUploadFile(pro)}}/>
                 <p className='flex justify-start'>you can do this later</p>
               </FormControl>
 
