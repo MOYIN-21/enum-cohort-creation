@@ -15,27 +15,17 @@ dayjs.locale('en');
 const theme = createTheme();
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    // display: 'flex',
-  },
-  // textField: {
-  //   fontSize:"20px", 
-  // },
 }));
 
-const EndDate=({setEndDate})=> {
+const EndDate=({setEndDate,formData})=> {
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const [selectedEndDate, setSelectedEndDate] = useState(dayjs(''));
 
   const handleEndDateChange = (newDate) => {
-    console.log(newDate)
-    // setEndDate(newDate)
+    setEndDate(newDate)
     setSelectedEndDate(newDate);
-    
-
-    // dispatch(setEndDate(newDate.format('YYYY-MM-DD')))
   };
 
   return (
@@ -48,7 +38,7 @@ const EndDate=({setEndDate})=> {
             components={['DatePicker']}>
             <DatePicker 
             value={selectedEndDate}
-            onChange={(event)=>{handleEndDateChange(event)}}
+            onChange={(event)=>{ handleEndDateChange(event)}}
             className={classes.textField}
             renderInput={(params) => (
                 <TextField {...params}

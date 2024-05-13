@@ -14,10 +14,6 @@ const Cohorts = () => {
   return (
     <div className=''>
         <div>
-            {/* <p>COHORT</p> */}
-            <div>
-                {/* <input type="search" name="searchCohort" id="cohortId" placeholder='Enter cohort' /> */}
-            </div>
         </div>
             <LargeScreenSideBar/>
            <LargeScreenNoCohort/>

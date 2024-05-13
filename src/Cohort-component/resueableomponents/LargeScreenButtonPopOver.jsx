@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Stack from '@mui/joy/Stack';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
@@ -10,59 +10,77 @@ import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import Button from '@mui/joy/Button';
 import EndDate from './EndDate';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Programs from './Programs';
-import { setCohortDescription, setCohortName } from '../../redox/createCohortData/Input';
 import DragAndUploadFile from './DragAndUploadFile';
 import StartDate from './StartDate';
+import { useNavigate } from 'react-router-dom';
+import { setProgram } from '../../redox/createCohortData/ProgramSlice';
 
 const LargeScreenButtonPopOver=()=>{
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [layout, setLayout] = useState('');
-  const [endDateTime,setEndDate] = useState('')
+  const [program, selectedProgram] = useState('');
+  const [endDate,setEndDate] = useState(null)
+  const [submitDisabled, setSubmitDisabled] = useState(true);
+  const [startDate, setStartDate] = useState(null);
+  const [fileUpload, setFileUpload] = useState('');
   const [formData, setFormData] = useState({
     cohortName: "",
     description: "",
-    programDrop: "",
-    date: "",
-    UploadImage: "",
+    programDrop: program,
     startDate:"",
-    endDate:endDateTime,
+    endDate:"",
+    uploadImage: "fileUpload",
   })
   
-  let program = useSelector((state)=> state.program)
-  formData.programDrop = program
-
-  let date = useSelector((state)=> state.date)
-  formData.date = date
-
-
-  let image = useSelector((state)=>state.image)
-  formData.UploadImage = image
-
-
   const handleSubmit=(event)=>{
       event.preventDefault();
+      dispatch(setProgram(formData))
+      navigate('/cohortcreated')
   }
-  console.log(formData);
+  const handleDrop = (event) => {
+    event.preventDefault();
 
-  dispatch(setCohortName(formData.cohortName));
-  dispatch(setCohortDescription(formData.description))
+    const file = event.dataTransfer.files[0];
+    setImageURL(URL.createObjectURL(file));
+  };
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+    if( name !== "programDrop"){
+    setFormData({ ...formData, [name]: value });}
+    else{
+      setFormData({...formData, [name]: value})
+    }
   };
 
-  console.log(formData)
-  const handelCancelButton =()=>{
-    // console.log("button")
-    setLayout(false)
+
+  const handleDate =(event)=>{
+    const value = event.$d
+    const name = "endDate"
+    setFormData({...formData, [name]: value})
   }
 
+  const handleStartDate =(event)=>{
+    const value = event.$d
+    const name = "startDate"
+    setFormData({...formData, [name]: value})
+  }
 
-  // const isButtonDisabled = !setCohortName || !setCohortDescription || !setSelectedOption;
+  const handelCancelButton =()=>{
+    setLayout(false)
+  }
+  console.log(formData," but i am disabled")
 
+  useEffect(() => {
+    const isFormValid =
+    formData.cohortName !== '' && formData.description !== '' && formData.programDrop !== '' && formData.startDate !== '' && formData.endDate !== '' && formData.uploadImage !== '';
+    setSubmitDisabled(!isFormValid);
+  }, [formData]);
+  
   return (
     <div className='hidden sm:flex justify-center pt-10'>
       <React.Fragment>
@@ -83,7 +101,7 @@ const LargeScreenButtonPopOver=()=>{
             </Button>
           </div>          
         </Stack>
-        <Modal open={!!layout} onClose={() => setLayout(true)}>
+        <Modal open={!!layout} onClose={() => setLayout('')}>
           <ModalDialog layout={layout}>
             <ModalClose/>
             <DialogTitle 
@@ -113,22 +131,21 @@ const LargeScreenButtonPopOver=()=>{
                   
                   />
               </FormControl>
+
               <FormControl>
-               <Programs func={(pro)=>{Programs(pro)}}/>
+               <Programs setProgram={handleChange} formData={formData}/>
               </FormControl>
              
-                <FormControl className="">
-                <div  className="flex flex-row pt-10 gap-10">
-                  <StartDate/>
-                  <EndDate/>
-                  {/* <EndDate ></EndDate> */}
-                </div>
+                <FormControl>
+                  <div  className="flex flex-row pt-10 gap-10">
+                    <StartDate setStartDate={handleStartDate} formData={formData}/>
+                    <EndDate setEndDate={handleDate} formData={formData}/>
+                  </div>
                 </FormControl>
               
-
               <FormControl className="pt-10">
                 <p>Add a cohort Avater</p>
-                <DragAndUploadFile func={(pro)=> {DragAndUploadFile(pro)}}/>
+                <DragAndUploadFile setFileUpload={handleDrop} formData={formData} />
                 <p className='flex justify-start'>you can do this later</p>
               </FormControl>
 
@@ -151,15 +168,15 @@ const LargeScreenButtonPopOver=()=>{
                   <div className='pt-10'>
                     <Button 
                       variant="contained"
-                      // disabled={isButtonDisabled} 
                       sx={{
                         backgroundColor: "#008EEF",
-                        // backgroundColor: isButtonDisabled ? "#008EEF" : "#BDBDBD", 
+                        backgroundColor: !submitDisabled ? "#008EEF" : "#BDBDBD", 
                         color: "#FFFFFF",
                         lineHeight: '27px', 
                         width: 'full',
                       }} 
                       type={'submit'}
+                      disabled={submitDisabled}
                       onClick={handleSubmit}
                     >
                       Create Class
@@ -176,3 +193,14 @@ const LargeScreenButtonPopOver=()=>{
   );
 }
 export default LargeScreenButtonPopOver
+
+
+  // let program = useSelector((state)=> state.program)
+  // formData.programDrop = program
+
+  // let date = useSelector((state)=> state.date)
+  // formData.date = date
+
+
+  // let image = useSelector((state)=>state.image)
+  // formData.UploadImage = image

@@ -9,25 +9,22 @@ import { createTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import { useDispatch } from 'react-redux';
-import { setStartDate } from '../../redox/createCohortData/DateSlice';
 
 dayjs.locale('en');
 const theme = createTheme();
 
 const useStyles = makeStyles((theme) => ({}));
 
-const StartDate=({set})=> {
+const StartDate=({setStartDate, formData})=> {
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const [selectedStartDate, setSelectedStartDate] = useState(dayjs(''));
 
   const handleStartDateChange = (newDate) => {
-    console.log(newDate);
+    setStartDate(newDate)
     setSelectedStartDate(newDate);
-    // dispatch(setStartDate(newDate.format('DD-MM-YYYY')))
   }
-
 
   return (
     <LocalizationProvider 
@@ -38,7 +35,7 @@ const StartDate=({set})=> {
           <DemoContainer 
           components={['DatePicker']}>
             <DatePicker
-              onChange={handleStartDateChange}
+            onChange={(event)=>{ handleStartDateChange(event)}}
               value={selectedStartDate}
               className={classes.textField}
               renderInput={(params) => (

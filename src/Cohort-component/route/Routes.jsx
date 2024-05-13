@@ -1,5 +1,6 @@
 import Layout from "../layout/Layout";
 import Cohorts from "../pages/Cohort";
+import CohortCreated from "../pages/CohortCreated";
 import HomePage from "../pages/HomePage";
 import Instructors from "../pages/Instructors";
 import Learners from "../pages/Learners";
@@ -49,7 +50,11 @@ export const ROUTES = [
             {
                 path: '/programs',
                 element: <Programs/>
-            }
+            },
+            {
+                path: '/cohortcreated',
+                element: <CohortCreated/>
+            },
         ]
     
     },

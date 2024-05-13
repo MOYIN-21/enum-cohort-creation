@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  program: '', 
+   cohortsData: []
 };
 
 const programSlice = createSlice({
@@ -10,6 +10,7 @@ const programSlice = createSlice({
   reducers: {
     setProgram(state, action) {
       state.program = action.payload;
+      console.log(action.payload,"this is the payload")
     },
   },
 });

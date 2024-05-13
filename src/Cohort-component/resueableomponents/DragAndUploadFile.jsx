@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 
-const DragAndUploadFile =()=> {
+const DragAndUploadFile =({setFileUpload, formData}) => {
   const [imageURL, setImageURL] = useState(null);
+
+  const handleChange = (event) => {
+    setImageURL(event.target.value)
+  };
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -11,10 +15,7 @@ const DragAndUploadFile =()=> {
     event.preventDefault();
 
     const file = event.dataTransfer.files[0];
-    console.log(file, "this is a file")
-    const imageURL = URL.createObjectURL(file);
-    console.log(imageURL, "this is imageurl")
-    setImageURL(imageURL);
+    setImageURL(URL.createObjectURL(file));
   };
 
   const handleCancel = () => {
@@ -25,6 +26,10 @@ const DragAndUploadFile =()=> {
     <div className='bg-blue-50 border-2 border-blue-400 border-dashed rounded-lg w-full h-32 relative '
       onDragOver={handleDragOver}
       onDrop={handleDrop}
+      name='uploadImage'
+      value={imageURL}
+      onChange={(event)=> {handleDrop(event)
+      setFileUpload}}
     >
       {imageURL && (
         <>

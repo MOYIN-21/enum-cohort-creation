@@ -7,24 +7,23 @@ import { MenuItem } from '@mui/material'
 import { setProgram } from '../../redox/createCohortData/ProgramSlice'; 
 const programs = ["Product Management", "Backend", "Frontend", "DevOps", "Data Science"];
 
-const Programs = () => {
+const Programs = ({setProgram, formData}) => {
   const [selectedProgram, setSelectedProgram] = useState('');
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
-    setSelectedProgram(event.target.value);
-    dispatch(setProgram(event.target.value)); 
+    setSelectedProgram(event.target.value)
   };
-  console.log(selectedProgram)
 
   return (
     <FormControl className="pt-10">
-      {/* <p>Program</p> */}
       <InputLabel  className="flex justify-start" id="demo-simple-select-label">Select Program</InputLabel>
       <Select
         labelId="demo-simple-select-label"
+        name='programDrop'
         value={selectedProgram}
-        onChange={handleChange}
+        onChange={(event)=>{handleChange(event)
+           setProgram(event)}}
       >
         {programs.map((program) => (
           <MenuItem key={program} value={program}>
