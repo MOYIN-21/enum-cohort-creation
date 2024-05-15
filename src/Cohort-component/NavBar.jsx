@@ -7,6 +7,7 @@ import { useState } from "react";
 import unsplash from '../assets/unsplash.png';
 import { Link } from "react-router-dom";
 import EastIcon from '@mui/icons-material/East';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 const Nav = () => {

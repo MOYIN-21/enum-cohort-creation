@@ -5,10 +5,10 @@ import dateReducer from './redox/createCohortData/DateSlice'
 import UploadReducer from './redox/createCohortData/UploadSlice'
 const store= configureStore({
     reducer: {
-        input: inputReducer,
+        // input: inputReducer,
         program: programReducer,
-        date: dateReducer,
-        upload: UploadReducer,
+        // date: dateReducer,
+        // upload: UploadReducer,
     }
 })
 export default store

@@ -7,9 +7,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { Link } from "react-router-dom";
 
 const LargeScreenSideBar = () => {
-  // const [open, setOpen] = React.useState(false);
   const [activeButton, setActiveButton] = useState(""); 
-  // const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
       setAge(event.target.value);
@@ -109,7 +107,7 @@ const LargeScreenSideBar = () => {
           </div>
         </div>
 
-        {activeButton==="cohorts"?<div className='font-bold text-3xl pt-10'>COHORT</div>:activeButton==="learners"?<div>hello learners</div>:activeButton==="programs"?<div>Programs</div>:activeButton==="instructors"?<div>Hi Instructors</div>:<div>empty state</div>}
+        {/* {activeButton==="cohorts"?<div className='font-bold text-3xl pt-10'>COHORT</div>:activeButton==="learners"?<div>hello learners</div>:activeButton==="programs"?<div>Programs</div>:activeButton==="instructors"?<div>Hi Instructors</div>:<div>empty state</div>} */}
     </div>
     </div>
   )

@@ -82,7 +82,7 @@ const LargeScreenButtonPopOver=()=>{
   }, [formData]);
   
   return (
-    <div className='hidden sm:flex justify-center pt-10'>
+    <div className='hidden sm:flex justify-center '>
       <React.Fragment>
         <Stack direction="row" spacing={1}>
         <div className='flex justify-center'>
@@ -169,7 +169,7 @@ const LargeScreenButtonPopOver=()=>{
                     <Button 
                       variant="contained"
                       sx={{
-                        backgroundColor: "#008EEF",
+                        // backgroundColor: "#008EEF",
                         backgroundColor: !submitDisabled ? "#008EEF" : "#BDBDBD", 
                         color: "#FFFFFF",
                         lineHeight: '27px', 
@@ -193,14 +193,3 @@ const LargeScreenButtonPopOver=()=>{
   );
 }
 export default LargeScreenButtonPopOver
-
-
-  // let program = useSelector((state)=> state.program)
-  // formData.programDrop = program
-
-  // let date = useSelector((state)=> state.date)
-  // formData.date = date
-
-
-  // let image = useSelector((state)=>state.image)
-  // formData.UploadImage = image
