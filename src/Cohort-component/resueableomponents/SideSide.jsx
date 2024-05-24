@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import CohortCreated from '../pages/CohortCreated';
 
 
-const LargeScreenSideBar = () => {
+const SideSide = () => {
   const cohorts = useSelector((state) => state.program.cohortsData);
   const [activeButton, setActiveButton] = useState(""); 
 
@@ -45,7 +45,8 @@ const LargeScreenSideBar = () => {
               </Button>
           </div>
 
-          <div className='flex gap-5'> 
+          <div className='flex gap-5'>
+          {/* <Link to="/programs">   */}
               <Button 
                 variant="text" 
                 sx={{ 
@@ -63,9 +64,11 @@ const LargeScreenSideBar = () => {
               >
                 Programs
               </Button>
+              {/* </Link> */}
           </div>
 
           <div className='flex gap-5'> 
+          {/* <Link to="/instructors">  */}
               <Button 
                 variant="text" 
                 sx={{ 
@@ -83,9 +86,11 @@ const LargeScreenSideBar = () => {
               >
                 Instructors
               </Button>
+              {/* </Link> */}
           </div>
 
           <div className='flex gap-5'> 
+          {/* <Link to="/learner">  */}
               <Button 
                 variant="text" 
                 sx={{ 
@@ -104,32 +109,21 @@ const LargeScreenSideBar = () => {
               >
                 Learners
               </Button>
+              {/* </Link> */}
           </div>
         </div>
 
         {cohorts.length > 1 && <div className='flex justify-center items-center h-full w-full'>
-          {activeButton === "cohort" && (
-            <div className='flex flex-col justify-center items-center'>
-              <div><LargeScreenNoCohort /></div>
-                <div className='pt-9'><LargeScreenButtonPopOver /></div>
-            </div>
-          )}
           {activeButton === "program" && (
             <div className='flex flex-col justify-center items-center'>
-              <div><LargeScreenNoCohort /></div>
-              I AM PROGRAM
             </div>
           )}
           {activeButton === "instructor" && (
             <div className='flex flex-col justify-center items-center'>
-              <div><LargeScreenNoCohort /></div>
-              I AM INSTRUCTOR
             </div>
           )}
           {activeButton === "learner" && (
             <div className='flex flex-col justify-center items-center'>
-              <div><LargeScreenNoCohort /></div>
-              I AM LEARNER
             </div>
           )}
         </div>}
@@ -138,4 +132,4 @@ const LargeScreenSideBar = () => {
   );
 };
 
-export default LargeScreenSideBar;
+export default SideSide;

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import  C1 from '../../assets/C1.png'
 
 
 
@@ -8,11 +9,11 @@ const initialState = {
    cohortsData: [
     {
       id: 2,
-      // picture: '/assets/C1.png', 
+      picture: {C1}, 
       cohortName: 'Cohort 1',
       learners: '30 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "backend" 
+      program: "Product Designer" 
     },
     {
       id: 2,
@@ -20,7 +21,7 @@ const initialState = {
       cohortName: 'Cohort 2',
       learners: '30 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "backend" 
+      program: "Product Designer" 
     },
     {
       id: 3,
@@ -28,7 +29,7 @@ const initialState = {
       cohortName: 'Cohort 3',
       learners: '30 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "frontend"
+      program: "Product Designer"
     },
     {
       id: 3,
@@ -36,7 +37,7 @@ const initialState = {
       cohortName: 'Cohort 4',
       learners: '30 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "Product "
+      program: "Product Designer"
     },
     {
       id: 3,
@@ -44,7 +45,7 @@ const initialState = {
       cohortName: 'Cohort 5',
       learners: '30 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "Devops"
+      program: "Product Designer"
     },
     {
       id: 3,
@@ -52,7 +53,7 @@ const initialState = {
       cohortName: 'Cohort 6',
       learners: '30 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "product "
+      program: "Product Designer "
     },
     {
       id: 3,
@@ -60,23 +61,7 @@ const initialState = {
       cohortName: 'Cohort 7',
       learners: '30 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "Data "
-    },
-    {
-      id: 3,
-      // picture: '/assets/C1.png',
-      cohortName: 'Cohort 8',
-      learners: '30 Learners',
-      dateCreated: '2nd Jan 2021',
-      program: "ui/ux"
-    },
-    {
-      id: 3,
-      // picture: '/assets/C1.png',
-      cohortName: 'Cohort 9',
-      learners: '30 Learners',
-      dateCreated: '2nd Jan 2021',
-      program: "Data"
+      program: "Product Designer "
     },
    ]
 };

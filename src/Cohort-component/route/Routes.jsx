@@ -57,7 +57,7 @@ export const ROUTES = [
                 element: <CohortCreated/>
             },
             {
-                path: '/mobilecohortcreated',
+                path: '/mobil ecohortcreated',
                 element: <MobileCohortCtreated/>
             },
         ]

@@ -44,7 +44,7 @@ const LargeScreenButtonPopOver=()=>{
     event.preventDefault();
 
     const file = event.dataTransfer.files[0];
-    setImageURL(URL.createObjectURL(file));
+    // setImageURL(URL.createObjectURL(file));
   };
 
 
@@ -169,7 +169,6 @@ const LargeScreenButtonPopOver=()=>{
                     <Button 
                       variant="contained"
                       sx={{
-                        // backgroundColor: "#008EEF",
                         backgroundColor: !submitDisabled ? "#008EEF" : "#BDBDBD", 
                         color: "#FFFFFF",
                         lineHeight: '27px', 

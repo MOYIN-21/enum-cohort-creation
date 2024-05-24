@@ -13,8 +13,8 @@ const organizations = () => {
       <div className='flex flex-col'>
       <Mobileoption/>
       </div>
-      <LargeScreenNoCohort/>
-      <LargeScreenButtonPopOver/>
+      {/* <LargeScreenNoCohort/> */}
+      {/* <LargeScreenButtonPopOver/> */}
       
     </div>
     <div className='md:hidden block'>

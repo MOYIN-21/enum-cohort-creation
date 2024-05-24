@@ -36,6 +36,7 @@ const StartDate=({setStartDate, formData})=> {
           <DemoContainer 
           components={['DatePicker']}>
             <DatePicker
+            disablePast
             onChange={(event)=>{ handleStartDateChange(event)}}
               value={selectedStartDate}
               className={classes.textField}

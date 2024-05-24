@@ -15,9 +15,9 @@ const Cohorts = () => {
     <div className=''>
         <div>
         </div>
-            <LargeScreenSideBar/>
-           <LargeScreenNoCohort/>
-           <LargeScreenButtonPopOver/>
+            {/* <LargeScreenSideBar/> */}
+           {/* <LargeScreenNoCohort/> */}
+           {/* <LargeScreenButtonPopOver/> */}
     </div>
   )
 }

@@ -36,7 +36,9 @@ const EndDate=({setEndDate,formData})=> {
           <label>End Date</label>
           <DemoContainer
             components={['DatePicker']}>
-            <DatePicker 
+            <DatePicker
+            // sx={{borderColor: "black"}} 
+            disablePast
             value={selectedEndDate}
             onChange={(event)=>{ handleEndDateChange(event)}}
             className={classes.textField}

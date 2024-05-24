@@ -13,8 +13,8 @@ const Footer = () => {
       setActiveButton(value);
     };
   return (
-    <div className='sm:hidden block pt-8'>
-      <div className='flex flex-row justify-evenly'>
+    <div className='sm:hidden block'>
+      <div className='flex justify-evenly absolute bottom-0 '>
         <div className=''>
           <Link to="/homepage">
             <Button 
