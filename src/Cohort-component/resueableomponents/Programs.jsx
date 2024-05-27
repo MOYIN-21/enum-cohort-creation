@@ -5,7 +5,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import { MenuItem } from '@mui/material'
 import { setProgram } from '../../redox/createCohortData/ProgramSlice'; 
-const programs = ["Product Management", "Backend", "Frontend", "DevOps", "Data Science"];
+const programs = ["Product", "Backend", "Frontend", "DevOps", "Data Science"];
 
 const Programs = ({setProgram, formData}) => {
   const [selectedProgram, setSelectedProgram] = useState('');

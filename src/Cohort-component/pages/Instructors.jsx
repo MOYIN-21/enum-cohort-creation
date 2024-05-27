@@ -5,8 +5,6 @@ import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort'
 const Instructors = () => {
   return (
     <div>
-        <LargeScreenSideBar/>
-        <LargeScreenNoCohort/>
         I AM INSTRUCTOR
     </div>
   )

@@ -10,11 +10,14 @@ import EastIcon from '@mui/icons-material/East';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
+
+
 const Nav = () => {
   const [activeButton, setActiveButton] = useState(0);
 
   const handleClick = (index) => {
     setActiveButton(index);
+    
   };
   return (
 
@@ -50,7 +53,7 @@ const Nav = () => {
                 </Button>
               </Link> 
                   
-                <Link to="/organization"> 
+                <Link to="/workspace"> 
                   <Button 
                     variant="text" 
                     sx={{ 

@@ -21,11 +21,10 @@ const EndDate=({setEndDate,formData})=> {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const [selectedEndDate, setSelectedEndDate] = useState(dayjs(''));
+  const [value, setValue] = useState(dayjs('2024-05-27'));
 
   const handleEndDateChange = (newDate) => {
     setEndDate(newDate)
-    setSelectedEndDate(newDate);
   };
 
   return (
@@ -37,10 +36,9 @@ const EndDate=({setEndDate,formData})=> {
           <DemoContainer
             components={['DatePicker']}>
             <DatePicker
-            // sx={{borderColor: "black"}} 
             disablePast
-            value={selectedEndDate}
-            onChange={(event)=>{ handleEndDateChange(event)}}
+            value={value}
+            onChange={(newValue)=>{ handleEndDateChange(newValue)}}
             className={classes.textField}
             renderInput={(params) => (
                 <TextField {...params}

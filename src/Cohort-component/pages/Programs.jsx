@@ -5,8 +5,7 @@ import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort'
 const Programs = () => {
   return (
     <div>
-        <LargeScreenSideBar/>
-        <LargeScreenNoCohort/>
+
         I AM PROGRAM
     </div>
   )

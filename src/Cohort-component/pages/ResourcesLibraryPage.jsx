@@ -4,7 +4,6 @@ import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort'
 const ResourcesLibraryPage = () => {
   return (
     <div className=''>
-      <LargeScreenNoCohort/>
       I AM RESOURCES
     </div>
   )

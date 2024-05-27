@@ -1,17 +1,13 @@
 import React, { useState, MouseEvent } from 'react';
-import LargeScreenSideBar from '../resueableomponents/LargeScreenSideBar';
 import LargeScreenButtonPopOver from '../resueableomponents/LargeScreenButtonPopOver';
-import { useSelector } from 'react-redux';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Menu, MenuItem } from "@mui/material"
-import SideSide from '../resueableomponents/SideSide';
 import C1 from '../../assets/C1.png'
 import { Box } from '@mui/material';
 
 
-const CohortCreated = () => {
-  const cohorts = useSelector((state) => state.program.cohortsData)
+const CohortCreated = ({cohorts}) => {
   const [searchTerm, setSearchTerm] = useState(''); 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -37,11 +33,8 @@ const CohortCreated = () => {
 
   return (
     <div className='flex w-full'>
-      <SideSide />
       <div className='pt-10 w-full'>
-        <div className='text-3xl font-serif justify-start px-16 flex'>
-          cohort
-        </div>
+        
 
         <div className='flex justify-between px-16 pt-10 '>
           <div className="">
@@ -84,17 +77,18 @@ const CohortCreated = () => {
           </div>
         </div>
           <Box overflow="auto" height={500}>
-        {filteredCohorts.length > 0 ? ( 
-          filteredCohorts.map((cohort, index) => {
+        {filteredCohorts?.length > 0 ? ( 
+          filteredCohorts?.map((cohort, index) => {
             return (
               <div key={index} className='flex flex-row justify-between pt-10 h-22 px-16'>
                 <div className='flex flex-row gap-5'>
                 <div className=''> <img src={C1} alt="" /> </div>
+                {/* <div>{cohort.uploadImage} </div> */}
                 <div className='flex flex-col'>
                   <div className='font-bold flex justify-start'>{cohort.cohortName}</div>
-                  <div className='flex flex-row gap-10'>
-                    <div className=''>{cohort.program}</div>
-                    <div> <PersonOutlineOutlinedIcon sx={{color: "#9CABB5"}}/> {cohort.learners}</div>
+                  <div className='flex flex-row gap-6'>
+                    <div className=''>{cohort.programDrop}</div>
+                    <div className='flex gap-3'> <PersonOutlineOutlinedIcon sx={{color: "#9CABB5"}}/>  <p>25{" "}learners</p></div>
                   </div>
                   </div>
                   

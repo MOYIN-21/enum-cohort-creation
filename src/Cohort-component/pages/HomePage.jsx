@@ -1,13 +1,11 @@
 import React from 'react'
-import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort'
-import { Sidebar } from 'flowbite-react'
 
 const HomePage = () => {
   return (
-    <div className=''>
-        <Sidebar/>
-        <LargeScreenNoCohort/>
-
+    <div className='flex flex-row'>
+      <div className='flex w-full flex-col justify-center items-center'>
+       I AM HOME
+      </div>
     </div>
   )
 }

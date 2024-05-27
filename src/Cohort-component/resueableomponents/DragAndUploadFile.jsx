@@ -17,6 +17,7 @@ const DragAndUploadFile =({setFileUpload, formData}) => {
     const file = event.dataTransfer.files[0];
     setImageURL(URL.createObjectURL(file));
   };
+  // console.log(file, "THIS IS THE IMAGE")
 
   const handleCancel = () => {
     setImageURL(null);

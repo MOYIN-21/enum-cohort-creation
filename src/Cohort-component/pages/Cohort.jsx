@@ -5,18 +5,27 @@ import Modal from '@mui/material/Modal';
 import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort';
 import LargeScreenSideBar from '../resueableomponents/LargeScreenSideBar';
 import LargeScreenButtonPopOver from '../resueableomponents/LargeScreenButtonPopOver';
+import CohortCreated from './CohortCreated';
+import { useSelector } from 'react-redux';
+
 
 const Cohorts = () => {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+  const cohorts = useSelector((state) => state.program.cohortsData)
+
+
 
   return (
     <div className=''>
-        <div>
+        <div className='text-3xl font-serif justify-start px-16 font-normal flex'>
+          Cohorts
         </div>
-            {/* <LargeScreenSideBar/> */}
-           {/* <LargeScreenNoCohort/> */}
+        {cohorts.length < 1 ? <div>
+           <LargeScreenNoCohort/>
+        </div>
+        :
+        <div>
+          <CohortCreated cohorts={cohorts}/>
+        </div>}
            {/* <LargeScreenButtonPopOver/> */}
     </div>
   )

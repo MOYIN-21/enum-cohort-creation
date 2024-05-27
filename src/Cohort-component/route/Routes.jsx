@@ -17,12 +17,38 @@ export const ROUTES = [
         element: <Layout/>,
         children:[
             {
+                path: "/",
+                element: <HomePage/>
+            }, 
+            {
                 path: "/homepage",
                 element: <HomePage/>
             },      
             {
                 path: '/workspace',
                 element: <WorkSpacePage/>,
+                children:[
+                    {
+                        path: "",
+                        element: <Cohorts/>
+                    },
+                    {
+                        path: "/workspace/cohort",
+                        element: <Cohorts/>
+                    },
+                    {
+                        path: '/workspace/learner',
+                        element: <Learners/>,
+                    },
+                    {
+                        path: '/workspace/instructors',
+                        element: <Instructors/>
+                    },
+                    {
+                        path: '/workspace/programs',
+                        element: <Programs/>
+                    },
+                ]
             },
             {
                 path: "/resourceslibrarypage",
@@ -32,26 +58,12 @@ export const ROUTES = [
                 path: "/schedule",
                 element: <Schedule/>
             },
-            {
-                path: "/cohort",
-                element: <Cohorts/>
-            },
+            
             {
                 path: '/organization',
                 element: <Organizations/>
             },
-            {
-                path: '/learner',
-                element: <Learners/>,
-            },
-            {
-                path: '/instructors',
-                element: <Instructors/>
-            },
-            {
-                path: '/programs',
-                element: <Programs/>
-            },
+            
             {
                 path: '/cohortcreated',
                 element: <CohortCreated/>

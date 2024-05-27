@@ -1,8 +1,6 @@
 import React from 'react'
 import noCohort from '../../assets/nocohort.png'
-import Button from '@mui/joy/Button';
-
-// import { Link } from "react-router-dom";
+import LargeScreenButtonPopOver from './LargeScreenButtonPopOver';
  
  const LargeScreenNoCohort =()=>{
     const handleShowModal = (value) => {
@@ -10,14 +8,15 @@ import Button from '@mui/joy/Button';
     }
 
   return (
-    <div className='justify-center flex'>
-        <div className=''>
-            <div className='justify-center flex '>
-                <img src={noCohort} alt="" />
-            </div>
-            <div className='font-bold pt-5'>Empty Space</div>
-            <div className='px-5 pt-4'>No cohort has been created yet, let's get you started by clicking the button below</div>
-        </div>
+    <div className='justify-center flex flex-col items-center'>
+      <div className=''>
+          <img src={noCohort} alt="" />
+      </div>
+      <div className='font-bold pt-5'>Empty Space</div>
+      <div className='px-5 py-4 text-center w-2/6'>No cohort has been created yet, let's get you started by clicking the button below</div>
+      <div className='pt-7'>
+        <LargeScreenButtonPopOver />
+      </div>
     </div>
   )
 }
