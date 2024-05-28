@@ -1,10 +1,8 @@
 import React from 'react'
-import LargeScreenSideBar from '../resueableomponents/LargeScreenSideBar'
-import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort'
 
 const Instructors = () => {
   return (
-    <div>
+    <div className='flex justify-center items-center text-3xl'>
         I AM INSTRUCTOR
     </div>
   )

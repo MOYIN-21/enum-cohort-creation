@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
 import GroupIcon from '@mui/icons-material/Group';
 import ImportContactsTwoToneIcon from '@mui/icons-material/ImportContactsTwoTone';
 import { FiBriefcase } from "react-icons/fi";
 import PersonIcon from '@mui/icons-material/Person';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const LargeScreenSideBar = () => {
-  const [activeButton, setActiveButton] = useState(""); 
+  const [activeButton, setActiveButton] = useState(() => {
+    return localStorage.getItem('activeButton') || "cohort"; 
+  });
+
+  useEffect(() => {
+    localStorage.setItem('activeButton', activeButton);
+  }, [activeButton]);
 
   const handleButtonClick = (button) => {
     setActiveButton(button);
@@ -42,7 +47,6 @@ const LargeScreenSideBar = () => {
 
           <div className='flex gap-5'>
             <Link to={'/workspace/programs'}>
-
               <Button 
                 variant="text" 
                 sx={{ 
@@ -51,8 +55,8 @@ const LargeScreenSideBar = () => {
                   lineHeight: '27px',
                   color: activeButton === "program" ? '#008EEF' : '#475661',
                   '&:hover': { 
-                      backgroundColor: '#F6FCFF',
-                      color: '#008EEF'
+                    backgroundColor: '#F6FCFF',
+                    color: '#008EEF'
                   }
                 }}
                 onClick={() => handleButtonClick("program")}
@@ -87,7 +91,6 @@ const LargeScreenSideBar = () => {
 
           <div className='flex gap-5'>
             <Link to={'/workspace/learner'}>
-
               <Button 
                 variant="text" 
                 sx={{ 

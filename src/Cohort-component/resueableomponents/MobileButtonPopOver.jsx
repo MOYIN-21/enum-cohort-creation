@@ -83,8 +83,6 @@ const MobilePopOver=()=>{
     uploadImage: "fileUpload",
   })
 
-  console.log(formData," but i am disabled")
-
   useEffect(() => {
     const isFormValid =
     formData.cohortName !== '' && formData.description !== '' && formData.programDrop !== '' && formData.startDate !== '' && formData.endDate !== '' && formData.uploadImage !== '';

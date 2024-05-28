@@ -4,8 +4,7 @@ import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort'
 
 const Learners = () => {
   return (
-    <div>
-
+    <div className='flex justify-center items-center text-3xl'>
         I AM A LEARNER
     </div>
   )

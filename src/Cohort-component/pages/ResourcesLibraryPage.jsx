@@ -3,7 +3,7 @@ import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort'
 
 const ResourcesLibraryPage = () => {
   return (
-    <div className=''>
+    <div className='flex justify-center items-center text-3xl'>
       I AM RESOURCES
     </div>
   )

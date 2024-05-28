@@ -4,10 +4,13 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Menu, MenuItem } from "@mui/material"
 import C1 from '../../assets/C1.png'
+import { useSelector } from 'react-redux';
 import { Box } from '@mui/material';
 
 
 const CohortCreated = ({cohorts}) => {
+  const cohort = useSelector((state) => state.program.cohortsData)
+
   const [searchTerm, setSearchTerm] = useState(''); 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -84,11 +87,17 @@ const CohortCreated = ({cohorts}) => {
                 <div className='flex flex-row gap-5'>
                 <div className=''> <img src={C1} alt="" /> </div>
                 {/* <div>{cohort.uploadImage} </div> */}
-                <div className='flex flex-col'>
+                <div className='flex flex-col gap-1'>
                   <div className='font-bold flex justify-start'>{cohort.cohortName}</div>
-                  <div className='flex flex-row gap-6'>
-                    <div className=''>{cohort.programDrop}</div>
-                    <div className='flex gap-3'> <PersonOutlineOutlinedIcon sx={{color: "#9CABB5"}}/>  <p>25{" "}learners</p></div>
+                  
+                  <div className='flex flex-row  justify-start'>
+                    
+                    <div>{cohort.programDrop}</div>
+                    <div className='flex '>{cohort.program}</div>
+                      <div className='flex gap-8'>
+
+                        <div className='flex gap-2 pl-7'> <PersonOutlineOutlinedIcon sx={{color: "#9CABB5"}}/>  <p>25{" "}learners</p></div>
+                      </div>
                   </div>
                   </div>
                   

@@ -1,11 +1,8 @@
 import React from 'react'
-import LargeScreenSideBar from '../resueableomponents/LargeScreenSideBar'
-import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort'
 
 const Programs = () => {
   return (
-    <div>
-
+    <div className='flex justify-center items-center text-3xl'>
         I AM PROGRAM
     </div>
   )

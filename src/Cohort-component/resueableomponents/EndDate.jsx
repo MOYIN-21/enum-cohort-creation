@@ -9,7 +9,6 @@ import { createTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import { useDispatch } from 'react-redux';
-import { setEndDate } from '../../redox/createCohortData/DateSlice';
 
 dayjs.locale('en');
 const theme = createTheme();
@@ -18,14 +17,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EndDate=({setEndDate,formData})=> {
+  const date = new Date()
+
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const [value, setValue] = useState(dayjs('2024-05-27'));
+  const [value, setValue] = useState(dayjs("DD MMM YYYY"));
+
 
   const handleEndDateChange = (newDate) => {
     setEndDate(newDate)
-  };
+  }
 
   return (
     <LocalizationProvider 
@@ -37,7 +39,6 @@ const EndDate=({setEndDate,formData})=> {
             components={['DatePicker']}>
             <DatePicker
             disablePast
-            value={value}
             onChange={(newValue)=>{ handleEndDateChange(newValue)}}
             className={classes.textField}
             renderInput={(params) => (

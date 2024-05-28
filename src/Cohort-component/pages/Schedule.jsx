@@ -1,10 +1,8 @@
 import React from 'react'
-import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort'
 
 const Schedule = () => {
   return (
-    <div>
-         <LargeScreenNoCohort/>
+    <div className='flex justify-center items-center text-3xl'>
          I AM SCHEDULE
     </div>
    

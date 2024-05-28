@@ -10,6 +10,7 @@ import ResourcesLibraryPage from "../pages/ResourcesLibraryPage";
 import Schedule from "../pages/Schedule";
 import WorkSpacePage from "../pages/WorkSpacePage";
 import MobileCohortCtreated from "../resueableomponents/MobileCohortCtreated";
+import Mobileoption from "../resueableomponents/Mobileoption";
 
 export const ROUTES = [
     {
@@ -48,6 +49,10 @@ export const ROUTES = [
                         path: '/workspace/programs',
                         element: <Programs/>
                     },
+                    {
+                        path: '/workspace/mobileoption',
+                        element: <Mobileoption/>
+                    },
                 ]
             },
             {
@@ -72,6 +77,7 @@ export const ROUTES = [
                 path: '/mobil ecohortcreated',
                 element: <MobileCohortCtreated/>
             },
+           
         ]
     
     },

@@ -1,23 +1,34 @@
-import { AppBar, Button } from "@mui/material"
+import { AppBar, Button, Menu, MenuItem } from "@mui/material"
 import logo from '../assets/Frame.png';
 import { FaRegBell } from 'react-icons/fa';
 import user from '../assets/userIcon.png'
 import group from '../assets/Group.png'
 import { useState } from "react";
 import unsplash from '../assets/unsplash.png';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import EastIcon from '@mui/icons-material/East';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 const Nav = () => {
   const [activeButton, setActiveButton] = useState(0);
+  const [anchorEl, setAnchorEl] = useState('');
+
 
   const handleClick = (index) => {
     setActiveButton(index);
-    
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleMenuClick = (event) => { 
+    setAnchorEl(event.currentTarget ); 
+  };
+
+  const handleMenuItemClick = (option) => {
+    handleMenuClose();
   };
   return (
 
@@ -31,72 +42,17 @@ const Nav = () => {
               </div>
 
               <div className='md:flex flex-row hidden justify-center gap-12'>
-              <Link to="/homepage">
-                <Button 
-                  variant="text" 
-                  sx={{ 
-                    color: activeButton === 0 ? '#008EEF' : 'black', 
-                    textDecoration: activeButton === 0 ? 'underline' : 'none',
-                    textTransform: "none",
-                    '&:hover': { 
-                      textDecoration: 'underline',
-                      color: '#008EEF'
-                    },
-                    fontSize: 16,
-                    fontWeight: 700,
-                    lineHeight: '27px' 
-                  }}
-                  onClick={() => handleClick(0)}  
-                  className="text-base font-bold"
-                  >
+              <NavLink to="/homepage">
                     Home
-                </Button>
-              </Link> 
+              </NavLink> 
                   
-                <Link to="/workspace"> 
-                  <Button 
-                    variant="text" 
-                    sx={{ 
-                      color: activeButton === 1 ? '#008EEF' : 'black', 
-                      textDecoration: activeButton === 1 ? 'underline' : 'none',
-                      textTransform: "none",
-                      '&:hover': { 
-                        textDecoration: 'underline',
-                        color: '#008EEF',
-                        textTransform: "none",
-                      },
-                      fontSize: 16,
-                      fontWeight: 700,
-                      lineHeight: '27px' 
-                    }}
-                    onClick={() => handleClick(1)}  
-                    className="text-base font-bold"
-                  >
+                <NavLink to="/workspace"> 
                     Workspace
-                  </Button>
-                </Link> 
+                </NavLink> 
               
-              <Link to="/resourceslibrarypage">
-                <Button 
-                  variant="text" 
-                  sx={{ 
-                    color: activeButton === 2 ? '#008EEF' : 'black', 
-                    textDecoration: activeButton === 2 ? 'underline' : 'none',
-                    textTransform: "none",
-                    '&:hover': { 
-                      textDecoration: 'underline',
-                      color: '#008EEF'
-                    },
-                    fontSize: 16,
-                    fontWeight: 700,
-                    lineHeight: '27px'
-                  }}
-                  onClick={() => handleClick(2)}  
-                  className="text-base font-bold"
-                  >
+              <NavLink to="/resourceslibrarypage">
                     Resources Library
-                </Button>
-              </Link>  
+              </NavLink>  
             </div>
 
               <div className='flex gap-7'>
@@ -105,6 +61,29 @@ const Nav = () => {
                   <div>
                       <img src={user} alt="" />
                   </div>
+
+                  <Button
+              variant="text"
+              onClick={handleMenuClick}
+              sx={{ 
+              display: { xs: 'none', md: 'flex' },
+              textTransform: 'none',
+              color: 'black'
+              }}
+              endIcon={<ExpandMoreIcon/>}
+            >
+              Onomowano
+            </Button>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+              >
+                <MenuItem onClick={() => handleMenuItemClick('Option 1')}>Option 1</MenuItem>
+                <MenuItem onClick={() => handleMenuItemClick('Option 2')}>Option 2</MenuItem>
+                <MenuItem onClick={() => handleMenuItemClick('Option 3')}>Option 3</MenuItem>
+              </Menu>
+
 
                   <div className='hidden sm:block'>
                       <img src={group} alt="" />

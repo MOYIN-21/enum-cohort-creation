@@ -16,10 +16,8 @@ const theme = createTheme();
 const useStyles = makeStyles((theme) => ({}));
 
 const StartDate=({setStartDate, formData})=> {
-  const classes = useStyles();
-  const dispatch = useDispatch();
 
-  const [value, setValue] = useState(dayjs('2024-05-27'));
+  const classes = useStyles();
 
 
   const handleStartDateChange = (newDate) => {
@@ -36,7 +34,7 @@ const StartDate=({setStartDate, formData})=> {
           components={['DatePicker']}>
             <DatePicker
               disablePast
-              value={value}
+              // value={value}
               onChange={(newValue) => handleStartDateChange(newValue)}
               className={classes.textField}
               renderInput={(params) => (

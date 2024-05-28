@@ -11,49 +11,49 @@ const initialState = {
       cohortName: 'Cohort 1',
       learners: '37 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "Product Designer" 
+      program: "Frontend" 
     },
     {
       id: 2,
       cohortName: 'Cohort 2',
       learners: '52 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "Product Designer" 
+      program: "Backend" 
     },
     {
       id: 3,
       cohortName: 'Cohort 3',
       learners: '43 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "Product Designer"
+      program: "DevOps"
     },
     {
       id: 3,
       cohortName: 'Cohort 4',
       learners: '18 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "Product Designer"
+      program: "Product"
     },
     {
       id: 3,
       cohortName: 'Cohort 5',
       learners: '30 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "Product Designer"
+      program: "Frontend"
     },
     {
       id: 3,
       cohortName: 'Cohort 6',
       learners: '36 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "Product Designer "
+      program: "Backend "
     },
     {
       id: 3,
       cohortName: 'Cohort 7',
       learners: '44 Learners',
       dateCreated: '2nd Jan 2021',
-      program: "Product Designer "
+      program: "DevOps "
     },
    ]
 };
