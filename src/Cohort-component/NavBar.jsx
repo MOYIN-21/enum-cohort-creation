@@ -94,8 +94,8 @@ const Nav = () => {
         </div>
         <div className='relative '> 
 
-          <div className='relative'>
-            <div className='h-48'> 
+          <div className='relative w-full'>
+            <div className='h-48 w-full'> 
               <img src={unsplash} 
               alt='background' 
               className='flex h-full mt-2 w-full'/>

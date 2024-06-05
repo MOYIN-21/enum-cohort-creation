@@ -6,23 +6,26 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { makeStyles } from '@mui/styles';
 import TextField from '@mui/material/TextField';
 import { createTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
-import { useDispatch } from 'react-redux';
 
 dayjs.locale('en');
 const theme = createTheme();
 
 const useStyles = makeStyles((theme) => ({}));
 
-const StartDate=({setStartDate, formData})=> {
+const StartDate=({setStartDate})=> {
 
   const classes = useStyles();
 
+  const [value, setValue] = useState(dayjs("DD MMM YYYY"));
 
   const handleStartDateChange = (newDate) => {
     setStartDate(newDate)
   }
+
 
   return (
     <LocalizationProvider 
@@ -34,7 +37,6 @@ const StartDate=({setStartDate, formData})=> {
           components={['DatePicker']}>
             <DatePicker
               disablePast
-              // value={value}
               onChange={(newValue) => handleStartDateChange(newValue)}
               className={classes.textField}
               renderInput={(params) => (

@@ -2,6 +2,7 @@ import React from 'react'
 import LargeScreenNoCohort from '../resueableomponents/ LargeScreenNoCohort';
 import CohortCreated from './CohortCreated';
 import { useSelector } from 'react-redux';
+import MobileCohortCtreated from '../resueableomponents/MobileCohortCtreated';
 
 
 const Cohorts = () => {
@@ -17,7 +18,12 @@ const Cohorts = () => {
         </div>
         :
         <div >
-          <CohortCreated cohorts={cohorts}/>
+          <div className='sm:hidden md:block'>
+            <CohortCreated cohorts={cohorts}/>
+          </div>
+          <div className='hidden sm:block'>
+          <MobileCohortCtreated/>
+          </div>
         </div>}
     </div>
   )

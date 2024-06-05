@@ -6,7 +6,7 @@ const organizations = () => {
   <div>
     <div className=''>
       <div className='flex flex-col'>
-      {/* <Mobileoption/> */}
+      <Mobileoption/>
       </div>
     </div>
     <div className='md:hidden block'>

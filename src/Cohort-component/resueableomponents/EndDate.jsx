@@ -8,7 +8,6 @@ import TextField from '@mui/material/TextField';
 import { createTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
-import { useDispatch } from 'react-redux';
 
 dayjs.locale('en');
 const theme = createTheme();
@@ -16,18 +15,15 @@ const theme = createTheme();
 const useStyles = makeStyles((theme) => ({
 }));
 
-const EndDate=({setEndDate,formData})=> {
-  const date = new Date()
+const EndDate=({setEndDate, validateDate, formData})=> {
 
   const classes = useStyles();
-  const dispatch = useDispatch();
-
   const [value, setValue] = useState(dayjs("DD MMM YYYY"));
-
 
   const handleEndDateChange = (newDate) => {
     setEndDate(newDate)
   }
+
 
   return (
     <LocalizationProvider 
@@ -39,8 +35,9 @@ const EndDate=({setEndDate,formData})=> {
             components={['DatePicker']}>
             <DatePicker
             disablePast
-            onChange={(newValue)=>{ handleEndDateChange(newValue)}}
+            onChange={(newValue)=>{handleEndDateChange(newValue)}}
             className={classes.textField}
+            disabled={validateDate}
             renderInput={(params) => (
                 <TextField {...params}
                 variant="standard"  

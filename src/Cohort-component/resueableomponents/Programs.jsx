@@ -6,9 +6,8 @@ import Select from '@mui/material/Select';
 import { MenuItem } from '@mui/material'
 const programs = ["Product", "Backend", "Frontend", "DevOps", "Product"];
 
-const Programs = ({setProgram, formData}) => {
+const Programs = ({setProgram}) => {
   const [selectedProgram, setSelectedProgram] = useState('');
-  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setSelectedProgram(event.target.value)

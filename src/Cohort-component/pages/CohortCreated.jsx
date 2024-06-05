@@ -39,7 +39,7 @@ const CohortCreated = ({cohorts}) => {
       <div className='pt-10 w-full'>
         
 
-        <div className='flex justify-between px-16 pt-10 '>
+        <div className='flex justify-between px-14 pt-10 '>
           <div className="">
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">
               Search

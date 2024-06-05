@@ -24,7 +24,7 @@ export const ROUTES = [
             {
                 path: "/homepage",
                 element: <HomePage/>
-            },      
+            },
             {
                 path: '/workspace',
                 element: <WorkSpacePage/>,

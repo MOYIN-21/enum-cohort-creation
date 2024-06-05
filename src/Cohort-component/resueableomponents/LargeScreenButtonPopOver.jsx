@@ -9,13 +9,16 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import Button from '@mui/joy/Button';
-import EndDate from './EndDate';
 import { useDispatch } from 'react-redux';
 import Programs from './Programs';
+import { Typography } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import DragAndUploadFile from './DragAndUploadFile';
-import StartDate from './StartDate';
 import { useNavigate } from 'react-router-dom';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { setProgram } from '../../redox/createCohortData/ProgramSlice';
+import dayjs from 'dayjs';
 
 const LargeScreenButtonPopOver = () => {
   const dispatch = useDispatch();
@@ -23,16 +26,18 @@ const LargeScreenButtonPopOver = () => {
   const [layout, setLayout] = useState('');
   const [program, selectedProgram] = useState('');
   const [endDate, setEndDate] = useState(null);
+  const [validate, setValidate] = useState('');
   const [submitDisabled, setSubmitDisabled] = useState(true);
   const [startDate, setStartDate] = useState(null);
-  const [fileUpload, setFileUpload] = useState('');
+  const [endDateDisabled, setEndDateDisabled] = useState(true);
+  const [endDateError, setEndDateError] = useState('');
   const [formData, setFormData] = useState({
     cohortName: "",
     description: "",
     programDrop: program,
     startDate: "",
     endDate: "",
-    uploadImage: "fileUpload",
+    fileUpload: "file",
   });
 
   const initialFormData = {
@@ -41,7 +46,7 @@ const LargeScreenButtonPopOver = () => {
     programDrop: "",
     startDate: "",
     endDate: "",
-    uploadImage: "fileUpload",
+    fileUpload: "",
   };
 
   const handleSubmit = (event) => {
@@ -50,33 +55,19 @@ const LargeScreenButtonPopOver = () => {
     setFormData(initialFormData);
     setStartDate(null);
     setEndDate(null);
-    setLayout(false)
+    setLayout(false);
   };
 
-  const handleDrop = (event) => {
-    event.preventDefault();
-    const file = event.dataTransfer.files[0];
-    setFileUpload(URL.createObjectURL(file));
-  };
+  const handleDrop = (fileURL) => {
+    setFileUpload(fileURL);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      uploadImage: fileURL,
+    }));
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name !== "programDrop") {
-      setFormData({ ...formData, [name]: value });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
-
-  const handleDate = (event) => {
-    const value = event.$d;
-    const name = "endDate";
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleStartDate = (event) => {
-    const value = event.$d;
-    const name = "startDate";
     setFormData({ ...formData, [name]: value });
   };
 
@@ -91,12 +82,47 @@ const LargeScreenButtonPopOver = () => {
       formData.programDrop !== '' &&
       formData.startDate !== '' &&
       formData.endDate !== '' &&
-      formData.uploadImage !== '';
+      formData.fileUpload !== ''
     setSubmitDisabled(!isFormValid);
   }, [formData]);
 
+  const handleValidity = () => {
+    if (formData.startDate === null) {
+      setValidate(true);
+    } else {
+      setValidate(false);
+    }
+  };
+
+  const handleStartDateChange = (date) => {
+    const value = date.$d;
+    const name = "startDate";
+    setFormData({ ...formData, [name]: value });
+    setStartDate(date);
+    setEndDateDisabled(false);
+    handleValidity();
+    if (endDate && dayjs(date).isAfter(dayjs(endDate), 'day')) {
+      setEndDate(null);
+      setEndDateError("End date cannot be before start date");
+    } else {
+      setEndDateError("");
+    }
+  };
+
+  const handleEndDateChange = (date) => {
+    const value = date.$d;
+    const name = "endDate";
+    setFormData({ ...formData, [name]: value });
+    setEndDate(date);
+    if (startDate && (dayjs(date).isBefore(dayjs(formData.startDate), 'day') || dayjs(date).isSame(dayjs(formData.startDate), 'day'))) {
+      setEndDateError("End date cannot be before or same as start date");
+      return;
+    }
+    setEndDateError("");
+  };
+
   return (
-    <div className='hidden sm:flex justify-center '>
+    <div className='hidden sm:flex justify-center'>
       <React.Fragment>
         <Stack direction="row" spacing={1}>
           <div className='flex justify-center'>
@@ -120,7 +146,6 @@ const LargeScreenButtonPopOver = () => {
             <ModalClose />
             <DialogTitle className="text-4xl font-serif">Create a Cohort</DialogTitle>
             <DialogContent onSubmit={handleSubmit}>
-
               <FormControl>
                 <FormLabel className="pt-10">Cohort Name</FormLabel>
                 <Textarea
@@ -148,9 +173,32 @@ const LargeScreenButtonPopOver = () => {
               </FormControl>
 
               <FormControl>
-                <div className="flex flex-row pt-10 gap-10">
-                  <StartDate setStartDate={handleStartDate} formData={formData} />
-                  <EndDate setEndDate={handleDate} formData={formData} />
+                <div className='flex mt-4 w-[80%] gap-4'>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <div>
+                      <Typography variant="h6" className="d text-xl font-semibold">Start Date</Typography>
+                      <DatePicker
+                        value={startDate}
+                        disablePast
+                        onChange={handleStartDateChange}
+                      />
+                    </div>
+                    <div>
+                      <Typography variant="h6" className="d text-xl font-semibold">End Date</Typography>
+                      <DatePicker
+                        value={endDate}
+                        onChange={handleEndDateChange}
+                        minDate={startDate}
+                        disabled={endDateDisabled}
+                        shouldDisableDate={(date) => startDate && dayjs(date).isSame(startDate, 'day')}
+                      />
+                      {endDateError && (
+                        <Typography color="error" style={{ fontSize: "1rem" }}>
+                          {endDateError}
+                        </Typography>
+                      )}
+                    </div>
+                  </LocalizationProvider>
                 </div>
               </FormControl>
 

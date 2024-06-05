@@ -10,7 +10,7 @@ const WorkSpacePage = () => {
       <div className='max-md:hidden'>
         <LargeScreenSideBar />
       </div>
-      <div className='hidden max-md:block'>  <Mobileoption/> </div>
+      {/* <div className='hidden max-md:block'>  <Mobileoption/> </div> */}
       
       <div className=' basis-5/6'>
         <Outlet />
